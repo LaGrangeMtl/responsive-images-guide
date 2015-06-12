@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/main.css" />
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/picturefill/2.3.1/picturefill.min.js"></script>
+		<script src="js/main.js"></script>
+		
+		<title>Picturefill Demonstration</title>
+	</head>
+	<body>
+
+		<div class="container">
+			<h1>Testing Picturefill</h1>
+			
+			<p>Image normale</p>
+			<img src="images/medium.jpg" alt="A door" />
+
+
+			<p>Image picturefill</p>
+			<picture>
+				<!--[if IE 9]><video style="display: none;"><![endif]-->
+				<source srcset="images/extralarge.jpg, images/extralarge@2x.jpg 2x" media="(min-width: 1000px)">
+				<source srcset="images/large.jpg, images/large@2x.jpg 2x" media="(min-width: 800px)">
+
+				<!-- large.jpg is 800px wide here, so exactly twice small.jpg, no need for small@2x.jpg -->
+				<source srcset="images/small.jpg, images/large.jpg 2x" media="(max-width: 400px)">
+
+				<!--[if IE 9]></video><![endif]-->
+				<img srcset="images/medium.jpg, images/medium@2x.jpg 2x" alt="A door">
+			</picture>
+		</div>
+	</body>
+</html>
