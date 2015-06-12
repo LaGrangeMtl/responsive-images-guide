@@ -166,11 +166,14 @@ Bingo! We now have a retina image when needed! Wow that was pretty simple, right
 
 ####What's wrong then?
 Well, as you can see, this uses the background-image property and is done entirely in CSS. That's not a problem, you say. 
-I beg to differ : What happens in the case of content images (img tags)? We might replace them all with divs and play with them like 
-that! But what about WYSIWYGs? Yes, those ugly things still exists in CMSs! Unfortunately, there is no solution that is 
-currently backed by the W3C. We're alone Wilson! **Are we?**
+I beg to differ : What happens in the case of content images (img tags)? What about WYSIWYGs? Yes, those ugly things still 
+exists in CMSs! Unfortunately, there is no solution that is currently backed by the W3C. We're alone Wilson! 
+
+**Or, are we?**
 
 Yet again : **nope**!
+
+##Picturefill 
 
 The community has sprouted many ideas, and one stands tall in the midst of all of the others. I present to you, 
 [picturefill](https://github.com/scottjehl/picturefill). This particular project takes in account everything that 
@@ -189,13 +192,63 @@ I will go through this example here :
 
 	<!-- large.jpg is 800px wide here, so exactly twice small.jpg, no need for small@2x.jpg -->
 	<source srcset="images/small.jpg, images/large.jpg 2x" media="(max-width: 400px)">
-
+	
 	<!--[if IE 9]></video><![endif]-->
+
 	<img srcset="images/medium.jpg, images/medium@2x.jpg 2x" alt="A door">
 </picture>
 ``````
 
-The IE conditional comments
+The IE conditional comments are there to make support for IE9, which does not understand the 
+source elements without a video tag.
+
+First you will notice that we use the **picture element**. We then use the **srcset** attribute on **source** 
+elements inside of the picture tag to define image to load. Here we have 3 cases + 1 default. If picturefill 
+does not work, the default image will show up.
+
+The **media** attribute supports any valid media query, which is great, but we won't need to use fancy ones 
+like the <a href="#media-queries-and-background-size">ddpx one</a> because picturefill already support ddpx 
+detection!
+
+You can see this in the **srcset** attribute after the @1x image. A second image is given with the following 
+ddpx after the path. For example :
+
+``````
+"images/extralarge@2x.jpg 2x"
+``````
+
+Means : When the DDPX is equal or greater than 2, use this image. Of course this is coupled with the **media** 
+attribute and as such, for the extra large retina image, it will only be used if the screen resolution is 
+greater or equal to 1000px and the DDPX greater or equal to 2.
+
+That's it!
+
+####So.... are we good?
+Unfortunately no! WYSIWYGs will still output us img tags. So that's where our progress stops! Once the 
+polyfill made by picturefill becomes apart of the spec and browsers support it natively, we're bound to 
+see better WYSIWYGs output. Until then, we might just try to do it with one of the other solutions 
+proposed in this guide.
+
+
+##Summary
+That's quite a bit of text. Here's a little **tl;dr** for you!
+
+####Do you need to use a bitmap image?
+If you do, you have two solutions available to you right now : 
+
+* <a href="#media-queries-and-background-size">Media queries and background-size</a>. Works well, with 
+very few drawbacks. I would suggest using this method over the second option for the simple reason 
+that it will not pollute the DOM with unnecessary elements.
+* <<a href="picturefill">Picturefill</a>. To use if you need to work with image tags right in the content!
+
+####Do you need a simple vector icon?
+If you don't and really just need a small icon like a **>** character or a facebook icon. Use an <a href="#icon-fonts">Icon font</a>.
+
+####I need a simple shape
+Use <a href="#css-shapes">CSS</a> over SVG to not pollute the DOM and for maintanability.
+
+####I need a complicated vector or animated icon
+Use <a href="#svg">SVG</a>.
 
 ***
 ####Footnotes
