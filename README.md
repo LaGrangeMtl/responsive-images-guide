@@ -1,48 +1,48 @@
 ![Header La Grange](http://clients.la-grange.ca/grange/grange_header.jpg "Header La Grange")
 # Responsive-Images
 This project's goal is to find the best solution applicable to our usual websites
-to easily integrate and maintain images in a responsive design scenario, while 
+to easily integrate and maintain images in a responsive design scenario, while
 disturbing our current workflow to the strict minimum.
 
 ##Terminology
-Before reading this document, please read these terms to make sure that there 
+Before reading this document, please read these terms to make sure that there
 is no confusion between terms.
 
-* __DPI vs PPI__ : DPI means *dots per inches* and PPI means *pixels per inches*. 
-When speaking in computer terms, both are pretty much the same. We prefer the term 
-PPI as it stands for pixels which is what is actually used in screens instead of dots 
-which are used in the printing world.<sup>[1](#dpilove-faq)</sup> **BUT we will use 
+* __DPI vs PPI__ : DPI means *dots per inches* and PPI means *pixels per inches*.
+When speaking in computer terms, both are pretty much the same. We prefer the term
+PPI as it stands for pixels which is what is actually used in screens instead of dots
+which are used in the printing world.<sup>[1](#dpilove-faq)</sup> **BUT we will use
 DPI as it is seems to be the norm through the web's most recent documentation**.
 
-* __DPI vs DPPX__ : The term DPPX will be used to define *dots per pixels*. This might 
-sound silly but is a real issue. It refers to the amout of device pixels per CSS pixel (e.g. 
-in Retina displays, this will be 2).<sup>[2](#dpilove-faq)</sup> 
-We will therefore use it as the index reference for the nomenclature of the images 
-(e.g. image@2x.jpg refers to the equivalent image of image.jpg but with a pixel density of 2, 
+* __DPI vs DPPX__ : The term DPPX will be used to define *dots per pixels*. This might
+sound silly but is a real issue. It refers to the amout of device pixels per CSS pixel (e.g.
+in Retina displays, this will be 2).<sup>[2](#dpilove-faq)</sup>
+We will therefore use it as the index reference for the nomenclature of the images
+(e.g. image@2x.jpg refers to the equivalent image of image.jpg but with a pixel density of 2,
 therefore twice the width).
 
 
 ##Problem
-Images are a big part of websites and their usage is important to add power 
-to the visuals. Since the avenue of smartphones and tablets, screens have come 
+Images are a big part of websites and their usage is important to add power
+to the visuals. Since the avenue of smartphones and tablets, screens have come
 in many resolutions more importantly, many different pixel densities. This has brought
 two major problems on us.
 
 * Images that are meant for desktop users with a resolution of 1920x1080 might not be
 appropriate for mobile users, both in size and in art direction. <sup>[3](#sm-artdirection)</sup>
 
-* Images that are meant for desktop users are usually made for low-density screens (96 DPI) 
-while smartphones and tablets tend to have high-density displays ranging from 132 DPI for the 
+* Images that are meant for desktop users are usually made for low-density screens (96 DPI)
+while smartphones and tablets tend to have high-density displays ranging from 132 DPI for the
 iPad 1 and 2, to 577 DPI for the Samsung Galaxy S6. <sup>[4](#dpilove-devices)</sup>
 
-If we follow the same guidelines as the W3C, we need to find **"a declarative way to define 
+If we follow the same guidelines as the W3C, we need to find **"a declarative way to define
 resolution-independent bitmap images"**.<sup>[5](#w3c-respimg)</sup>
 
 
 ##Things that *kinda* work
-There are many **"kind-of-working"** solutions that are available to us right now. These are 
-useful ways of making responsive images, but do not answer to every problem that we are facing. Here's a 
-list of what we have to our disposition : 
+There are many **"kind-of-working"** solutions that are available to us right now. These are
+useful ways of making responsive images, but do not answer to every problem that we are facing. Here's a
+list of what we have to our disposition :
 
 * [SVG](#svg)
 * [Icon fonts](#icon-fonts)
@@ -51,11 +51,11 @@ list of what we have to our disposition :
 
 
 ##SVG
-For very simple icons, shapes or even more complicated images, SVG have made their proofs in 
-the web. Good things include that they are infinitely scalable and that they can be modified 
+For very simple icons, shapes or even more complicated images, SVG have made their proofs in
+the web. Good things include that they are infinitely scalable and that they can be modified
 through CSS. You can read more about that in [Chris Coyer's article](https://css-tricks.com/using-svg/).
 
-The major problem we have with SVG images is when we want complex images with multiple effects or 
+The major problem we have with SVG images is when we want complex images with multiple effects or
 photorealistic/photographic images. To conserve high fidelity in images we will have to find another way.
 
 Note that **we should be using SVG as much as possible** when it comes to **icons**, **small images** or
@@ -63,45 +63,45 @@ Note that **we should be using SVG as much as possible** when it comes to **icon
 
 
 ##Icon fonts
-In the same manner that SVG are infinitely scalable, fonts have proven the same behavior. When icons 
-became the norm in the web, people started to think that it was somewhat bothersome to include images 
+In the same manner that SVG are infinitely scalable, fonts have proven the same behavior. When icons
+became the norm in the web, people started to think that it was somewhat bothersome to include images
 each time you wanted to include an icon. Thus were born **icon fonts**.
 
 These come in many shape and forms, and from many different company. You can find many of them on
-[fonticons.com](https://fonticons.com/fonts). But the most used ones are probably [Font Awesome](http://fortawesome.github.io/Font-Awesome/) 
+[fonticons.com](https://fonticons.com/fonts). But the most used ones are probably [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
 and [Entypo](http://bistro.convergencecms.co/entypo) or [Glyphicons (which are included in Bootstrap)](http://getbootstrap.com/2.3.2/base-css.html#icons).
 
-Great! Now we have another way to make simple icons, yet again editable in CSS! 
+Great! Now we have another way to make simple icons, yet again editable in CSS!
 
 ![Ackbar](http://image-cdn.zap2it.com/images/admiral-ackbar-ole-miss-bigger.jpg)
 
 **It MIGHT be a trap...**
 
-While icon-fonts are certainly useful, they should be used with care, because as you may have 
-already experienced, fonts sometimes differ in other browsers. This leads to some icons being 
-bolder in a browser than in another. Nevertheless, we still use **Font Awesome** for some small 
+While icon-fonts are certainly useful, they should be used with care, because as you may have
+already experienced, fonts sometimes differ in other browsers. This leads to some icons being
+bolder in a browser than in another. Nevertheless, we still use **Font Awesome** for some small
 icons that would not justify the use of an SVG image such as a > character.
 
-The final point would be : Use them (they are way better than pixelated icons), but be careful of 
+The final point would be : Use them (they are way better than pixelated icons), but be careful of
 different browser rendering.
 
 
 ##CSS Shapes
-As for icon-fonts and SVG, CSS can be used to make small shapes or even more 
-[complex ones](https://pattle.github.io/simpsons-in-css/). CSS Shapes suffer from the same problems 
-that SVG do, though, which is they can't help us with photos. **If it is simple to maintain** in CSS, 
+As for icon-fonts and SVG, CSS can be used to make small shapes or even more
+[complex ones](https://pattle.github.io/simpsons-in-css/). CSS Shapes suffer from the same problems
+that SVG do, though, which is they can't help us with photos. **If it is simple to maintain** in CSS,
 we would advise doing it this way before thinking of SVG or icon-font.
 
-A good example of that would be triangles which are easily made up with borders and are scalable to no 
+A good example of that would be triangles which are easily made up with borders and are scalable to no
 end.
 
 
 ##Media queries and background-sizes
-Previously, we found many ways to make simple images and icons responsive, but not one of those 
-methods solved the problem of bitmap images. This is where Media Queries and the magnificient 
+Previously, we found many ways to make simple images and icons responsive, but not one of those
+methods solved the problem of bitmap images. This is where Media Queries and the magnificient
 background-size property come to play.
 
-With the use of these CSS tools we can change the source of an *"image"* depending on **resolution**, 
+With the use of these CSS tools we can change the source of an *"image"* depending on **resolution**,
 **orientation** and **DPPX**, with the use of a background-image!
 
 ***
@@ -129,8 +129,8 @@ the usual "no-prefix" method, as "resolution: 192dpi"
 ***
 
 So now that we can target **when** we want an image to change, how do we do it? Pretty simple!
-Lets pretend we have a 400px by 400px image that we want to look as sharp as possible on retina devices, 
-we are actually gonna need 2 images. One that is the normal size (the @1x version) and one that is 
+Lets pretend we have a 400px by 400px image that we want to look as sharp as possible on retina devices,
+we are actually gonna need 2 images. One that is the normal size (the @1x version) and one that is
 twice the actual size (the @2x version).
 
 ``````scss
@@ -142,18 +142,18 @@ twice the actual size (the @2x version).
 }
 
 
-// Lets target devices that have at least retina displays 
+// Lets target devices that have at least retina displays
 @media (-webkit-min-device-pixel-ratio: 2),
        (min--moz-device-pixel-ratio: 2),
        (min-resolution: 2dppx),
        (min-resolution: 192dpi) {
 
-	
+
 	.image {
 		// Since we already set the width and height of the element, no need to repeat them here
-		// Lets change the image source 
+		// Lets change the image source
 		background-image: url('../img/image@2x.jpg');
-		
+
 		// Now the new image is 800x800, which is twice to big for us!
 		// Here comes the magic :
 		background-size: cover;
@@ -165,19 +165,19 @@ Bingo! We now have a retina image when needed! Wow that was pretty simple, right
 ![Nope](http://vignette2.wikia.nocookie.net/drhousesynchtube/images/5/5f/NOPE..jpg/revision/latest?cb=20120629172405)
 
 ####What's wrong then?
-Well, as you can see, this uses the background-image property and is done entirely in CSS. That's not a problem, you say. 
-I beg to differ : What happens in the case of content images (img tags)? What about WYSIWYGs? Yes, those ugly things still 
-exists in CMSs! Unfortunately, there is no solution that is currently backed by the W3C. We're alone Wilson! 
+Well, as you can see, this uses the background-image property and is done entirely in CSS. That's not a problem, you say.
+I beg to differ : What happens in the case of content images (img tags)? What about WYSIWYGs? Yes, those ugly things still
+exists in CMSs! Unfortunately, there is no solution that is currently backed by the W3C. We're alone Wilson!
 
 **Or, are we?**
 
 Yet again : **nope**!
 
-##Picturefill 
+##Picturefill
 
-The community has sprouted many ideas, and one stands tall in the midst of all of the others. I present to you, 
-[picturefill](https://github.com/scottjehl/picturefill). This particular project takes in account everything that 
-the current proposition of the W3C recommends doing. By using it as it is now, when the Spec is released, we will 
+The community has sprouted many ideas, and one stands tall in the midst of all of the others. I present to you,
+[picturefill](https://github.com/scottjehl/picturefill). This particular project takes in account everything that
+the current proposition of the W3C recommends doing. By using it as it is now, when the Spec is released, we will
 normally not have to change the markup.
 
 You can see a working example in the /picturefill/ folder and you can read the [docs here](http://scottjehl.github.io/picturefill/).
@@ -192,41 +192,41 @@ I will go through this example here :
 
 	<!-- large.jpg is 800px wide here, so exactly twice small.jpg, no need for small@2x.jpg -->
 	<source srcset="images/small.jpg, images/large.jpg 2x" media="(max-width: 400px)">
-	
+
 	<!--[if IE 9]></video><![endif]-->
 
 	<img srcset="images/medium.jpg, images/medium@2x.jpg 2x" alt="A door">
 </picture>
 ``````
 
-The IE conditional comments are there to make support for IE9, which does not understand the 
+The IE conditional comments are there to make support for IE9, which does not understand the
 source elements without a video tag.
 
-First you will notice that we use the **picture element**. We then use the **srcset** attribute on **source** 
-elements inside of the picture tag to define image to load. Here we have 3 cases + 1 default. If picturefill 
+First you will notice that we use the **picture element**. We then use the **srcset** attribute on **source**
+elements inside of the picture tag to define image to load. Here we have 3 cases + 1 default. If picturefill
 does not work, the default image will show up.
 
-The **media** attribute supports any valid media query, which is great, but we won't need to use fancy ones 
-like the <a href="#media-queries-and-background-size">ddpx one</a> because picturefill already support ddpx 
+The **media** attribute supports any valid media query, which is great, but we won't need to use fancy ones
+like the <a href="#media-queries-and-background-size">ddpx one</a> because picturefill already support ddpx
 detection!
 
-You can see this in the **srcset** attribute after the @1x image. A second image is given with the following 
+You can see this in the **srcset** attribute after the @1x image. A second image is given with the following
 ddpx after the path. For example :
 
 ``````
 "images/extralarge@2x.jpg 2x"
 ``````
 
-Means : When the DDPX is equal or greater than 2, use this image. Of course this is coupled with the **media** 
-attribute and as such, for the extra large retina image, it will only be used if the screen resolution is 
+Means : When the DDPX is equal or greater than 2, use this image. Of course this is coupled with the **media**
+attribute and as such, for the extra large retina image, it will only be used if the screen resolution is
 greater or equal to 1000px and the DDPX greater or equal to 2.
 
 That's it!
 
 ####So.... are we good?
-Unfortunately no! WYSIWYGs will still output us img tags. So that's where our progress stops! Once the 
-polyfill made by picturefill becomes apart of the spec and browsers support it natively, we're bound to 
-see better WYSIWYGs output. Until then, we might just try to do it with one of the other solutions 
+Unfortunately no! WYSIWYGs will still output us img tags. So that's where our progress stops! Once the
+polyfill made by picturefill becomes apart of the spec and browsers support it natively, we're bound to
+see better WYSIWYGs output. Until then, we might just try to do it with one of the other solutions
 proposed in this guide.
 
 
@@ -234,12 +234,52 @@ proposed in this guide.
 That's quite a bit of text. Here's a little **tl;dr** for you!
 
 ####Do you need to use a bitmap image?
-If you do, you have two solutions available to you right now : 
+If you do, you have two solutions available to you right now :
 
-* <a href="#media-queries-and-background-size">Media queries and background-size</a>. Works well, with 
-very few drawbacks. I would suggest using this method over the second option for the simple reason 
+* <a href="#media-queries-and-background-size">Media queries and background-size</a>. Works well, with
+very few drawbacks. I would suggest using this method over the second option for the simple reason
 that it will not pollute the DOM with unnecessary elements.
-* <<a href="picturefill">Picturefill</a>. To use if you need to work with image tags right in the content!
+* <a href="#picturefill">Picturefill</a>. To use if you need to work with image tags right in the content!
+
+#####If you are using SCSS, I got something for you :
+I wrote some utility mixins that we use here at La Grange, in our everyday workflow. They simplify making media queries a lot, at least, IMHO, and making retina background are as easy as 1,2,3
+
+Check it out :
+
+```scss
+
+.div-with-a-background {
+
+    // Call the retina bg mixin with these parameters
+    @include retina-bg(
+        'logo', // The name of the image
+        'png',  // It's format
+        // And now the fun begins, lets make some retina settings
+        (
+            (
+                dppx: 2, // We want a 2x image to show, on a 2 dppx screen
+                width: 300px, // The element's width
+                height: 300px, // The element's height
+                min-width: 1024px // OPTIONAL, this parameter lets you set a min-width
+                                   to use in combination with the dppx parameter.
+                                  // Here for example, the 2x image will
+                                  // only show up if the screen is both
+                                  // greater than 1024px in resolution
+                                  // and 2 in DPPX
+
+            ),
+            // The great thing is we can set up, as many as we want
+            (
+                dppx: 1.5,
+                width: 300px,
+                height:300px
+            )
+        )
+    )
+}
+
+```
+
 
 ####Do you need a simple vector icon?
 If you don't and really just need a small icon like a **>** character or a facebook icon. Use an <a href="#icon-fonts">Icon font</a>.

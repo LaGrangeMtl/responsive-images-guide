@@ -1,0 +1,74 @@
+
+@mixin retina-bg($image, $image-format, $settings) {
+	@for $i from 1 through length($settings) {
+		$thisSetting: nth($settings, $i);
+
+		$dppx: map-get($thisSetting, dppx);
+		$min-width: map-get($thisSetting, min-width);
+		$width: map-get($thisSetting, width);
+		$height: map-get($thisSetting, height);
+
+		background-size: cover;
+		background: url('../img/#{$image}@#{$dppx}x.#{$image-format}');
+
+		@if $dppx != null && $min-width != null {
+			@include combined-retina-query($dppx, $min-width) {
+				width: $width;
+				height: $height;
+			}
+		}
+		@else if $dppx != null {
+			@include min-dppx($dppx) {
+				width: $width;
+				height: $height;
+			}
+		}
+	}
+}
+
+@mixin min-dppx($dppx) {
+	@media screen and
+			(-webkit-min-device-pixel-ratio: $dppx),
+	    	(min--moz-device-pixel-ratio: $dppx),
+			(min-resolution: #{$dppx}dppx),
+			(min-resolution: ($dppx * 96dpi)) {
+
+		@content;
+	}
+}
+
+@mixin combined-retina-query($dppx, $width) {
+	@media screen and
+			(min-width: $width),
+			(-webkit-min-device-pixel-ratio: $dppx),
+	    	(min--moz-device-pixel-ratio: $dppx),
+			(min-resolution: #{$dppx}dppx),
+			(min-resolution: ($dppx * 96dpi)) {
+
+		@content;
+	}
+}
+
+@mixin at-least($width){
+	@media all and (min-width: $width){
+		@content;
+	}
+}
+
+@mixin at-most($width){
+	@media all and (max-width: $width){
+		@content;
+	}
+}
+
+@mixin between($min-width, $max-width){
+	@media all and (min-width: $min-width) and (max-width: $max-width - 1){
+		@content;
+	}
+}
+
+@mixin isNot($width){
+	@media all and (min-width: $width + 1), all and (max-width: $width - 1){
+		@content;
+	}
+}
