@@ -261,14 +261,14 @@ Check it out :
                 width: 300px, // The element's width
                 height: 300px, // The element's height
                 min-width: 1024px // OPTIONAL, this parameter lets you set a min-width
-                                   to use in combination with the dppx parameter.
+                                  // to use in combination with the dppx parameter.
                                   // Here for example, the 2x image will
                                   // only show up if the screen is both
                                   // greater than 1024px in resolution
                                   // and 2 in DPPX
 
             ),
-            // The great thing is we can set up, as many as we want
+            // The great thing is we can set up as many as we want
             (
                 dppx: 1.5,
                 width: 300px,
